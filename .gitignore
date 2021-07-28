@@ -1,0 +1,13 @@
+media/
+.vscode/
+*.pyc
+gene_data*
+*.db
+*.sqlite3
+prediction2/
+# static
+Pipfile
+Pipfile.lock
+.venv
+.DS_Store
+*/__pycache__/

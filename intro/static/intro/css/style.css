@@ -1,0 +1,220 @@
+/* Google Font Link */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins" , sans-serif;
+}
+
+body{
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  overflow:hidden;
+}
+
+.sidebar{
+  position:fixed;
+  top:0;
+  left:0;
+  height: 100%;
+  width: 70px;
+  background-color: darkblue;
+  padding: 6px 14px;
+  transition: all 0.5s ease;
+}
+
+.sidebar.active{
+  width: 240px;
+}
+
+/* site logo */
+.sidebar .logo_content .logo {
+  color: #fff;
+  display: flex;
+  height: 50px;
+  width: 100%;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.sidebar.active .logo_content .logo{
+  opacity: 1;
+  pointer-events: none;
+}
+/* logo icon */
+.logo_content .logo {
+  font-size: 25px;
+  margin-right: 5px;
+}
+/* logo text */
+.logo_content .logo .logo_name{
+  font-size: 20px;
+  font-weight: 400;
+}
+/* dashboard button */
+.sidebar #btn{
+  position: absolute;
+  color: #fff;
+  left:50%;
+  top:6px;
+  font-size: 20px;
+  height: 50px;
+  width: 50px;
+  text-align: center;
+  line-height: 50px;
+  transform: translateX(-50%);
+}
+.sidebar #btn:hover{
+  color: #000;
+  background: #fff;
+  border-radius: 6px;
+}
+.sidebar.active #btn{
+  left:90%;
+}
+
+.sidebar ul{
+  margin-top: 20px;
+}
+
+.sidebar ul li {
+  position: relative;
+  list-style: none;
+  height: 50px;
+  width: 100%;
+  margin: 0 5px;
+}
+
+/* tooltip CSS */
+.sidebar ul li .tooltip{
+  position: absolute;
+  color: #000;;
+  left: 120px;
+  top:0;
+  transform: translate(-50%, -50%);
+  border-radius: 6px;
+  height: 35px;
+  width:120px;
+  background: #fff;
+  line-height: 35px;
+  text-align: center;
+  box-shadow: 0 5px 10px black;
+  transition: 0s;
+  opacity: 0;
+  pointer-events: none;
+  display: block;
+}
+
+.sidebar.active ul li .tooltip{
+  display: none;
+}
+
+.sidebar ul li:hover .tooltip{
+  transition: all 0.5s ease;
+  top:50%;
+  opacity: 1;
+}
+
+.sidebar ul li input{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top:0;
+  border-radius: 12px;
+  outline: none;
+  border:none;
+  background: black;
+  padding-left: 50px;
+  font-size: 18px;
+  color: #fff;
+}
+
+.sidebar ul li .bx-search{
+  position: absolute;
+  z-index: 99;
+  color: #fff;
+  font-size: 22px;
+  margin:15px;
+  transition:all 0.5s ease;
+}
+
+.sidebar ul li .bx-search:hover{
+  background: #fff;
+  color: #000;
+
+}
+.sidebar ul li{
+  color: #fff;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  line-height:50px ;
+  transition: all 0.4s ease;
+  border-radius: 12px; 
+}
+
+
+
+.sidebar ul li a{
+  width: 100%;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  line-height:50px ;
+  transition: all 0.4s ease;
+  border-radius: 12px; 
+  white-space: nowrap;
+}
+
+.sidebar ul li a:hover{
+  color: darkblue;
+  background: #fff;
+}
+
+.sidebar ul li a i{
+  height: 50px;
+  min-width: 50px;
+  border-radius: 12px;
+  line-height: 50px;
+  text-align: center;
+  padding-right: 10px;
+}
+
+/* to make the links appear on active */
+.sidebar .links_name{
+  opacity: 0;
+  pointer-events: none;
+}
+
+.sidebar.active .links_name{
+  opacity: 1;
+  pointer-events: auto;
+}
+
+
+/* for the logout icon */
+/* .logout {
+  position: absolute!important;
+  float: inline-end!important;
+} */
+
+/* main content */
+.main{
+  position: absolute;
+  height: 100%;
+  width: calc(100% -78px);
+  left: 78px;
+  transition:all 0.5s ease;
+}
+.sidebar.active ~ .main{
+  width: calc(100% -240px);
+  left: 240px;
+}
+.main .text{
+  margin:15px;
+}
