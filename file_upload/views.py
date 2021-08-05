@@ -18,6 +18,13 @@ def model_form_upload(request):
     if request.method == 'POST':
         form = DocumentForm(request.POST, request.FILES)
         if form.is_valid():
+            uploaded_file=request.FILES['document']
+            file_ext=uploaded_file.name.split('.')[-1]
+            print(file_ext)
+            if file_ext=='csv':
+                print('something')
+            #print(form.fields['description'], form.fields['document']) the uploaded fields of the form in the form of an object
+
             form.save()
             return redirect('home') #redirects to this page after success
     else:
