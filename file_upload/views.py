@@ -9,17 +9,6 @@ import csv
 import io
 
 def file_upload(request):
-    if request.method == 'POST' and request.FILES['myfile']:
-        myfile = request.FILES['myfile']
-        fs = FileSystemStorage()
-        filename = fs.save(myfile.name, myfile)
-        uploaded_file_url = fs.url(filename)
-        return render(request, 'file_upload/file_upload.html', {
-            'uploaded_file_url': uploaded_file_url
-        })
-    return render(request, 'file_upload/file_upload.html')
-
-def model_form_upload(request):
     def process_data(data):
         #creating a empty dataframe to store the processed values
         data_processed=pd.DataFrame(columns=['Accession no','Variable','Biological Rep','Technical Rep','Value'])
@@ -73,12 +62,14 @@ def model_form_upload(request):
                 data = [line for line in reader]
                 uploaded_file=pd.DataFrame(data)
                 uploaded_file=process_data(uploaded_file)
-                print(type(uploaded_file))
-            #print(form.fields['description'], form.fields['document']) the uploaded fields of the form in the form of an object
-            form.save()
+                print(type(uploaded_file), uploaded_file.columns) #the uploaded file is the modified csv file
+                form.save()
+            else:
+                #show an error message
+                print("Does nothing right now")
             return redirect('home') #redirects to this page after success
     else:
         form = DocumentForm()
-    return render(request, 'file_upload/model_form_upload.html', {
+    return render(request, 'file_upload/file_upload.html', {
         'form': form
     })
