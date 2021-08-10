@@ -1,4 +1,4 @@
-from file_upload.forms import DocumentForm
+from file_upload.forms import DocumentForm, StudyForm
 from django.shortcuts import render,redirect
 from django.conf import settings
 from django.core.files.storage import FileSystemStorage
@@ -73,3 +73,15 @@ def file_upload(request):
     return render(request, 'file_upload/file_upload.html', {
         'form': form
     })
+
+
+def meta_form(request):
+    if request.method=='POST':
+        form=StudyForm(request.POST)
+        if form.is_valid():
+            return redirect('home')
+        else:
+            form=StudyForm()
+    else:
+        form=StudyForm()
+    return render (request, 'file_upload/meta_upload.html', {'form':form})
