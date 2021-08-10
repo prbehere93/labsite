@@ -24,19 +24,19 @@ class trait(TimeStampedModel):
     method_ref=models.CharField(max_length=50)
 
 
-class meta_trait(TimeStampedModel):
+class MetaTrait(TimeStampedModel):
     meta_trait_id=models.CharField(max_length=50, unique=True)
     name=models.CharField(max_length=50)
     traits=models.ForeignKey(trait, on_delete=models.PROTECT) #one to many relationship here (can link multiple traits to a single meta_trait_id)
 
-class observation(TimeStampedModel):
+class Observation(TimeStampedModel):
     accession=models.CharField(max_length=50)
     trait=models.CharField(max_length=50)
     biological_replicate=models.CharField(max_length=4)
     technical_replicate=models.CharField(max_length=4)
     value=models.DecimalField(max_digits=1000,decimal_places=4,null=True,blank=True)
 
-class study(TimeStampedModel):
+class Study(TimeStampedModel):
 
     class GrowthFacilityType(models.TextChoices):
         FIELD = 'field', _('Field')
@@ -56,7 +56,7 @@ class study(TimeStampedModel):
     study_id=models.CharField(max_length=100,unique=True) #will also contain a callable function that will be used to autogenerate this id (use JS)
     user=models.ForeignKey(User, on_delete=PROTECT) #will probably be Profile here(in the RLR website)
     meta_trait=models.CharField(max_length=50,blank=False,null=False) #should be a FK
-    meta_trait_id=models.ForeignKey(meta_trait, on_delete=PROTECT, blank=True, null=True)
+    meta_trait_id=models.ForeignKey(MetaTrait, on_delete=PROTECT, blank=True, null=True)
     title=models.CharField(max_length=100,blank=True,null=True)
     description=models.CharField(max_length=200, blank=True, null=True)
     start_date=models.DateField(blank=True, null=True)
@@ -79,4 +79,4 @@ class study(TimeStampedModel):
     biological_replicates=models.IntegerField()
     technical_replicates=models.IntegerField()
     trait_name=models.CharField(max_length=100)
-    observation=models.ForeignKey(observation, blank=True, null=True)
+    observation=models.ForeignKey(Observation, blank=True, null=True, on_delete=models.PROTECT)
