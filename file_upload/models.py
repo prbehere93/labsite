@@ -56,7 +56,7 @@ class study(TimeStampedModel):
     study_id=models.CharField(max_length=100,unique=True) #will also contain a callable function that will be used to autogenerate this id (use JS)
     user=models.ForeignKey(User, on_delete=PROTECT) #will probably be Profile here(in the RLR website)
     meta_trait=models.CharField(max_length=50,blank=False,null=False) #should be a FK
-    meta_trait_id=models.ForeignKey(meta_trait, on_delete=PROTECT)
+    meta_trait_id=models.ForeignKey(meta_trait, on_delete=PROTECT, blank=True, null=True)
     title=models.CharField(max_length=100,blank=True,null=True)
     description=models.CharField(max_length=200, blank=True, null=True)
     start_date=models.DateField(blank=True, null=True)
@@ -79,4 +79,4 @@ class study(TimeStampedModel):
     biological_replicates=models.IntegerField()
     technical_replicates=models.IntegerField()
     trait_name=models.CharField(max_length=100)
-    observation=models.ForeignKey(observation)
+    observation=models.ForeignKey(observation, blank=True, null=True)
