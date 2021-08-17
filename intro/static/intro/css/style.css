@@ -206,10 +206,10 @@ body{
 /* main content */
 .main{
   position: absolute;
-  height: 100%;
   width: calc(100% -78px);
   left: 78px;
   transition:all 0.5s ease;
+  overflow: scroll;
 }
 .sidebar.active ~ .main{
   width: calc(100% -240px);
